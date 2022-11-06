@@ -1,0 +1,7 @@
+
+{
+    int a;
+    int b = 10;
+    string c = "asdf";
+    double d = 20 + 0.3;
+}
