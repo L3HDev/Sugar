@@ -1,13 +1,13 @@
 #include <iostream>
 #include <memory>
-#include "./Interpreter.h"
-#include "./Lexer.h"
-#include "./Parser.h"
-#include "./Node.h"
+#include "runtime/irmruntime.h"
+#include "lexer/lexer.h"
+#include "parser/parser.h"
+#include "parser/node.h"
 
 int main(int argc, char *argv[])
 {  
-    //Interpreter i;
+    //IRMRuntime i;
     //i.execute(argv[1]);
     Lexer l(argv[1]);
     Parser p(l);

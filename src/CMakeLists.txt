@@ -1,11 +1,20 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(SILE-Interpreter VERSION 0.1.0)
+set(used_modules
+    lexer
+    parser
+    runtime
+)
 
-include(CTest)
-enable_testing()
+foreach(mod ${used_modules})
+    add_subdirectory(${mod})
+endforeach()
 
-add_executable(SILE-Interpreter main.cpp)
+add_executable(${PROJECT_NAME} main.cpp)
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+message("asdfdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd")
+message(${BOOST_ROOT})
+
+target_link_libraries(${PROJECT_NAME} ${used_modules})
