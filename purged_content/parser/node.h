@@ -22,7 +22,7 @@ public:
     }
     void error(int tc, const Lexer &lex)
     {
-        std::cout << "Unexpected value at " << tc + 1 << lex.at(tc + 1).tokenType << std::endl;
+        std::cout << "Unexpected value at " << tc + 1 << static_cast<std::underlying_type<TokenType>::type>(lex.at(tc + 1).tokenType) << std::endl;
     }
     size_t size() { return subNodes.size(); }
     virtual ~Node() = default;
@@ -44,7 +44,8 @@ public:
         std::cout << "}\n";
     }
 };
-class Statement : public Node {
+class Statement : public Node
+{
 public:
     void debug() override
     {
@@ -55,19 +56,22 @@ public:
         }
     }
 };
-class Declaration : public Node {
+class Declaration : public Node
+{
 public:
     void debug() override
     {
-        std::cout << "Vartype: " << varType << " " << varName << " ";
-        if (subNodes.size() > 0) {
+        std::cout << "Vartype: " << static_cast<std::underlying_type<TokenType>::type>(varType) << " " << varName << " ";
+        if (subNodes.size() > 0)
+        {
             subNodes.at(0)->debug();
         }
     }
     TokenType varType;
     std::string varName;
 };
-class Assignment : public Node {
+class Assignment : public Node
+{
 public:
     void debug() override
     {

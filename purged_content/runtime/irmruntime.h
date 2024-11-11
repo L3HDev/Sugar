@@ -18,7 +18,7 @@ private:
     void erase(unsigned long adr);
     void ass(unsigned long adr);
 
-    void retriveOperants(double &lh, double &rh);
+    void retrieveOperants(double &lh, double &rh);
 
     void add();
     void sub();
@@ -68,5 +68,3 @@ private:
         {"jumpf",JUMPF},{"jlf",JLF},{"jlef",JLEF},{"jgf",JGF},{"jgef",JGEF},{"jef",JEF},{"jnef",JNEF},
         {"post",POST},{"postc",POSTC}};
 };
-
-#endif

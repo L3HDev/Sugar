@@ -1,11 +1,11 @@
 set(module_name runtime)
 
 set(headerfiles
-    irmruntime.h
+    runtime.h
 )
 
 set(sourcefiles
-    irmruntime.cpp
+    runtime.cpp
 )
 
 add_library(${module_name} ${headerfiles} ${sourcefiles})

@@ -143,7 +143,7 @@ void IRMRuntime::ass(unsigned long adr)
     heap[adr] = stack.back();
 }
 
-void IRMRuntime::retriveOperants(double &lh, double &rh)
+void IRMRuntime::retrieveOperants(double &lh, double &rh)
 {
     rh = stack.back();
     stack.pop_back();
@@ -154,25 +154,25 @@ void IRMRuntime::retriveOperants(double &lh, double &rh)
 void IRMRuntime::add()
 {
     double lh, rh;
-    retriveOperants(lh, rh);
+    retrieveOperants(lh, rh);
     stack.push_back(lh + rh);
 }
 void IRMRuntime::sub()
 {
     double lh, rh;
-    retriveOperants(lh, rh);
+    retrieveOperants(lh, rh);
     stack.push_back(lh - rh);
 }
 void IRMRuntime::mul()
 {
     double lh, rh;
-    retriveOperants(lh, rh);
+    retrieveOperants(lh, rh);
     stack.push_back(lh * rh);
 }
 void IRMRuntime::div()
 {
     double lh, rh;
-    retriveOperants(lh, rh);
+    retrieveOperants(lh, rh);
     stack.push_back(lh / rh);
 }
 

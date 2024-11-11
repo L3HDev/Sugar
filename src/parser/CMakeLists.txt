@@ -1,7 +1,6 @@
 set(module_name parser)
 
 set(headerfiles
-    node.h
     parser.h
 )
 

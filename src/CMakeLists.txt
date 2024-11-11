@@ -14,7 +14,4 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-message("asdfdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd")
-message(${BOOST_ROOT})
-
 target_link_libraries(${PROJECT_NAME} ${used_modules})

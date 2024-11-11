@@ -1,0 +1,63 @@
+-pushes value x to stack
+push x
+
+-pops top of stack
+pop
+
+-creates variable at address x
+create x
+
+-loads variable with id x to top of stack
+load x
+
+-removes variable from heap with id x
+erase x
+
+-assigns value of top of stack to variable with id x
+ass x
+
+-performs given op to the two top elements of stack together (pops both, rh = sp lh = sp - 1) and puts result at top of stack
+{
+	add - addition
+	sub - substraction
+	mul - multiplication
+	div - division
+}
+
+-sets pc to value of top of stack
+goto
+
+-creates a flag with id x
+flag x
+
+-unconditional jump by x steps (pc + x)
+jump x
+
+-conditional jump by x steps (pc + x) if condition is met comparing tos [con] tos-1
+{
+	jl x - less
+	jle x - less or equal
+	jg x - greater
+	jge x - greater or equal
+	je x - equal
+	jne x - not equal
+}
+
+-unconditional jump to flag with id x
+jumpf x
+
+-conditional jump to flag id x if condition is met comparing tos [con] tos-1
+{
+	jlf x - less
+	jlef x - less or equal
+	jgf x - greater
+	jgef x - greater or equal
+	jef x - equal
+	jnef x - not equal
+}
+
+-prints the value of top of stack
+post
+
+-prints the char representet by value of top of stack
+postc

@@ -1,17 +1,33 @@
 #include <iostream>
-#include <memory>
-#include "runtime/irmruntime.h"
-#include "lexer/lexer.h"
-#include "parser/parser.h"
-#include "parser/node.h"
+#include <algorithm>
+
+char *getCmdOption(char **begin, char **end, const std::string &option)
+{
+    char **itr = std::find(begin, end, option);
+    if (itr != end && ++itr != end)
+    {
+        return *itr;
+    }
+    return 0;
+}
+
+bool cmdOptionExists(char **begin, char **end, const std::string &option)
+{
+    return std::find(begin, end, option) != end;
+}
 
 int main(int argc, char *argv[])
-{  
-    //IRMRuntime i;
-    //i.execute(argv[1]);
-    Lexer l(argv[1]);
-    Parser p(l);
-    std::shared_ptr<Block> b = std::make_shared<Block>();
-    p.parse(b);
-    b->debug();
+{
+    if (!cmdOptionExists(argv, argv + argc, "-f"))
+    {
+        std::cout << "No file given." << std::endl;
+        return 1;
+    }
+
+    char *filename = getCmdOption(argv, argv + argc, "-f");
+
+    if (filename)
+    {
+        std::cout << "File: " << filename << std::endl;
+    }
 }
