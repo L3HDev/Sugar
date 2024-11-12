@@ -1,162 +1,16 @@
 # Sugar Language
 
-## 1. Token List
-
-| Token Name | Token Definition |
-|-|-|
-| SEMICOLON | ; |
-| STRING | ".*" |
-| VAR | \[a-zA-Z_][a-zA-Z0-9_]* |
-| DOUBLE | [[0-9]*][.]\(0-9)+ |
-| INTEGER | ^\d+$ |
-| DEQUAL | == |
-| NEQUAL | != |
-| LESS | < |
-| LESSEQUAL | <= |
-| GREATER | > |
-| GREATEREQUAL | >= |
-| EQUAL | = |
-| PLUS | + |
-| MINUS | - |
-| MUL | * |
-| DIV | / |
-| MOD | % |
-| POW | ^ |
-| AND | && |
-| OR | \|\| |
-| NOT | ! |
-| LISTDECL | # |
-| AT | @ |
-| PUSHBACK | << |
-| REMOVE | ! |
-| LBRACE | [ |
-| RBRACE | ] |
-| LCURL | { |
-| RCURL | } |
-| LPAREN | ( |
-| RPAREN | ) |
-| INTTYPE | int |
-| DOUBLETYPE | double |
-| STRINGTYPE | string |
-| ANYTYPE | any |
-| WHILE | while |
-| FOR | for |
-| IF | if |
-| ELSE | else |
-| RETURN | return |
-| BREAK | break |
-| CONTINUE | continue |
-| CLASS | class |
-| TILDE | ~ |
-| COMMA | , |
-| ACCESS | . |
-| ELVIS | ?: |
-| OPT_ACCESS | ?. |
-| PIPE | \|> |
-| DEFAULT_ASSIGN | ?= |
-| ARROW | => |
-
-## 2. Grammar Definitions
+## Grammar Definitions
 
 TODO: integrate following
 `destructuring_assignment` = **`LBRACKET`** (**`VAR`** **`COMMA`**)\* **`VAR`** **`RBRACKET`** **`EQUAL`** `expression`
-`default_assignment` = **`VAR`** **`DEFAULT_ASSIGN`** `expression`
-`object_access_chain` = **`VAR`** (**`ACCESS`** **`VAR`**)+
-`optional_object_access_chain` = **`VAR`** (**`OPT_ACCESS`** **`VAR`**)+
-`switch_expression` = **`SWITCH`** **`LPAREN`** `expression` **`RPAREN`** **`LBRACE`** (**`CASE`** `expression` **`COLON`** `expression`)+ (**`DEFAULT`** **`ARROW`** `expression`)? **`RBRACE`**
 `lambda` = **`LPAREN`** `parameter_list` **`RPAREN`** **`ARROW`** `block`
 
-### Primary Rules
+TODO: #8 Automate display of grammar
 
-|||
-|-|-|
-| `program` | (`class_declaration` \| `function_declaration` \| `statement`)* |
-| `statement` | (`expression` \| `declaration` \| `assignment` \| `if_expression` \| `loop_expression` \| `return_statement` \| `break_statement` \| `continue_statement` \| `list_pushback` \| `list_insertion` \| `list_removal`) **`SEMICOLON`** |
-| `block` | **`LCURL`** `statement`* **`RCURL`** |
-| `declaration` | (`variable_type` \| `list_declaration`) **`VAR`** |
-| `assignment` | (`declaration` \| **`VAR`**) **`EQUAL`** `expression` |
-| `return_statement` | **`RETURN`** (`expression`)? |
-| `break_statement` | **`BREAK`** |
-| `continue_statement` | **`CONTINUE`** |
+## Code Examples
 
-### Expression Rules (TODO: Revisit precedence climb here, some non-terminals are not suited for this)
-
-|||
-|-|-|
-| `expression` | `pipeline_expression` \| `list_access` |
-| `pipeline_expression` |  `elvis_expression` (**`PIPE`**  `elvis_expression`)* |
-| `elvis_expression` | `default_expression` (**`ELVIS`** `default_expression`)? |
-| `default_expression` | `boolean_or_expression` (**`DEFAULT`** `boolean_or_expression`)? |
-| `boolean_or_expression` | `boolean_and_expression` (**`OR`** `boolean_and_expression`)* |
-| `boolean_and_expression` | `comparison_expression` (**`AND`** `comparison_expression`)* |
-| `comparison_expression` | `additive_expression` ((**`DEQUAL`** \| **`NEQUAL`** \| **`LESS`** \| **`LESSEQUAL`** \| **`GREATER`** \| **`GREATEREQUAL`**) `additive_expression`)* |
-| `additive_expression` | `multiplicative_expression` ((**`PLUS`** \| **`MINUS`**) `multiplicative_expression`)* |
-| `multiplicative_expression` | `exponentiation_expression` ((**`MUL`** \| **`DIV`** \| **`MOD`**)  `exponentiation_expression`)* |
-| `exponentiation_expression` | `unary_expression` (**`POW`** `unary_expression`)* |
-| `unary_expression` | (**`NOT`** \| **`MINUS`**)? `primary_expression` |
-| `primary_expression` | **`VAR`** \| **`INTEGER`** \| **`DOUBLE`** \| **`STRING`** \| `function_call` \| `list_access` \| `lambda` |
-
-### List Operations
-
-|||
-|-|-|
-| `list_declaration` | `variable_type` **`LISTDECL`**  (**`INTEGER`**)? |
-| `list_access` | **`VAR`** **`LPAREN`** `expression` **`RPAREN`** |
-| `list_pushback` | **`VAR`** **`PUSHBACK`** `expression` |
-| `list_insertion` | **`VAR`** **`PUSHBACK`** `expression` **`AT`** **`LPAREN`** `expression` **`RPAREN` |
-| `list_removal` | **`VAR`** **`REMOVE`** **`LPAREN`** `expression` **`RPAREN`** |
-| `list_comparison` | **`VAR`** (**`LESS`** \| **`LESSEQUAL`** \| **`GREATER`** \| **`GREATEREQUAL`** \| **`DEQUAL`** \| **`NEQUAL`**) `expression` |
-
-### Control Structures
-
-|||
-|-|-|
-| `if_expression` | **`IF`** **`LPAREN`** `scoped_initialization`? `expression` **`RPAREN`** `block` (**`ELSE`** **`LPAREN`** `expression` **`RPAREN`** `block` \| **`ELSE`** `block`)* |
-| `scoped_initialization` | `variable_declaration` **`EQUAL`** `expression` **`TILDE`** **`LPAREN` (`expression` (**`OR` `expression`)*) **`RPAREN`** |
-| `loop_expression` | `while_loop` \| `for_loop` |
-| `while_loop` | **`WHILE`** **`LPAREN`** `expression` **`RPAREN`** `block` |
-| `for_loop` | **`FOR`** **`LPAREN`** `assignment` **`SEMICOLON`** `expression` **`SEMICOLON`** `expression` **`RPAREN`** `block` |
-
-### Function and Class Declarations
-
-|||
-|-|-|
-| `function_declaration` | `variable_type` **`VAR`** **`LPAREN`** `parameter_list` **`RPAREN`** `block` |
-| `parameter_list` | (`variable_type` **`VAR` (**`COMMA` `variable_type` **`VAR`**)*)? |
-| `class_declaration` | **`CLASS`** **`VAR`** `block` |
-
-### Variable Type
-
-|||
-|-|-|
-| `variable_type` | **`INTTYPE`** \| **`DOUBLETYPE`** \| **`STRINGTYPE`** \| **`ANYTYPE`** \| `user_defined_type` |
-| `function_call` | **`VAR`** **`LPAREN`** `argument_list` **`RPAREN`** |
-| `argument_list` | (`expression` (**`COMMA`** `expression`)*)? |
-| `user_defined_type` | **`VAR`** |
-
-## 3. Precedence Order
-
-1. Primary (`primary_expression`)
-1. Unary (`unary_expression`)
-1. Exponentiation (**`POW`**)
-1. Multiplicative (**`MUL`**, **`DIV`**, **`MOD`**)
-1. Additive (**`PLUS`**, **`MINUS`**)
-1. Comparison (`<`, `<=`, `>`, `>=`, `==`, `!=`)
-1. Boolean AND (`&&`)
-1. Boolean OR (`||`)
-1. Elvis (`?:`)
-1. Pipeline (`|>`)
-1. List Access (`@`)
-1. List Push Back (`<<`)
-1. List Insertion (`<<@`)
-1. List Removal (`!@`)
-1. Assignment (`=`)
-1. Scoped Initialization in `if` (`~`)
-1. Return, Break, Continue
-1. Block and Statement
-1. Class Declarations
-
-## 4. Code Examples
+TODO: #9 Automate display of code examples from programs folder
 
 ### Lists
 
