@@ -1,0 +1,7 @@
+int null_value;
+int non_null_value = 1;
+
+null_value ?= 100;      // will be set to 100
+non_null_value ?= 100;  // will stay at 1
+
+print(f"{null_value}, {non_null_value}");

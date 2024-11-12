@@ -1,0 +1,20 @@
+int value = 3;
+
+string result = switch(value) {
+    case 1 {} =>                // Fallthrough without behavior
+    case 2 {
+        print("Message from case 2");
+    } =>                        // Fallthrough with behavior
+    case 3 {
+        print("Message from case 3");
+    } =>                        // Fallthrough with behavior
+    case 4 {
+        return "Value <= 4";   // switch returns value
+    }
+    default {
+        print("Message from default case");
+        return "Unknown";
+    }
+};
+
+print(result);

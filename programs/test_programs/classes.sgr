@@ -1,0 +1,44 @@
+value = right_hand.getValue() + 1;
+
+class MyClass {
+  public {
+    () {
+      value = 1;
+    }
+    (int val) {
+      value = val;
+    }
+
+    =(MyClass right_hand) {
+      value = right_hand.getValue() + 1;
+    }
+
+    +(MyClass right_hand) {
+      value = right_hand.getValue() + value;
+    }
+
+    int setValue(int val) {
+        value = val;
+        return value;
+    }
+
+    int getValue() {
+        return value;
+    }
+  }
+
+  private {
+    int value = 0;
+  }
+}
+
+MyClass myObject();
+print(myObject.getValue()); // should return 1
+myObject.setValue(100);
+print(myObject.getValue()); // should return 100
+
+MyClass my_object2(10);
+print(my_object2.getValue()); // should return 10
+
+MyClass my_object3 = myObject + my_object2;
+print(my_object3.getValue()); // should return 110

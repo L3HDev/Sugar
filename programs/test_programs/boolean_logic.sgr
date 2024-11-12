@@ -1,0 +1,5 @@
+bool condition1 = true;
+bool condition2 = false;
+if(condition1 and condition2 || true) {
+    print("This should pass because of short-circuiting");
+}
