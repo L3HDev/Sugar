@@ -1,0 +1,37 @@
+if(int temp = get_some_value(), $ -> [> 6]) {
+    // temp is usable here
+    print(temp);
+}
+else(temp < 2) {
+    // temp is usable here
+    print(temp);
+}
+//else(temp ->[< 2]) {
+//    // temp is usable here
+//    print(temp);
+//}
+else {
+    // temp is usable here
+    print(temp);
+}
+
+if(int temp = get_some_value(), $ > 6) {}
+
+if(int temp = get_some_value(), int temp2 = get_some_value(), temp > 6 || $ < 4) {}
+
+if(temp = get_some_value(), $ > 6) {}
+
+if(x + 10 > 3) {}
+
+if(val ->[ > 10 || == 5 || == 4 && <= 4]) {}
+
+if(val ->[ > 10 || == 5 ||( == 4 && <= 4)]) {}
+
+if(x + 10 -> [==3 && < 4]) {}
+
+if (test -> [.a > 3 || .b < 1]) {}
+//if (my_obj test() -> (.a > 3 || .b < 1)) {}
+//if (my_obj test(init_val) -> (.a > 3 || .b < 1)) {}
+
+// later my_obj test;
+//if (test(init_val) -> (.a > 3 || .b < 1)) {}

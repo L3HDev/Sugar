@@ -1,0 +1,24 @@
+int# mylist;
+
+mylist << 5;
+mylist << 10;
+mylist << 15;
+if(mylist > 2) {
+    print(mylist@(0)); // should return 5
+}
+
+mylist!@(1); // removes the item at index 1
+print(mylist@(1)); // should return 15
+
+mylist << 20;
+if(mylist == 4) {
+    print(mylist@(2)); // should return 15
+}
+
+int# emptyList;
+
+if(emptyList > 0) {
+    print(emptyList@(0)); // should not reach this point
+} else {
+    print("List is empty"); // should return this
+}
