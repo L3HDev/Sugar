@@ -135,7 +135,7 @@ terminal_expression:
 	VAR
 	| LAST_ASSIGNED
 	| INTEGER
-	| DOUBLE
+	| DECIMAL
 	| STRING
 	| BOOL_FALSE
 	| BOOL_TRUE;
@@ -210,7 +210,7 @@ class_overrideable_operator:
 variable_type:
 	BOOLTYPE
 	| INTTYPE
-	| DOUBLETYPE
+	| DECIMALTYPE
 	| STRINGTYPE
 	| ANYTYPE
 	| user_defined_type;
@@ -314,7 +314,7 @@ CLASS: 'class';
 PUBLIC: 'public';
 PRIVATE: 'private';
 INTTYPE: 'int';
-DOUBLETYPE: 'double';
+DECIMALTYPE: 'dec';
 STRINGTYPE: 'string';
 BOOLTYPE: 'bool';
 BOOL_TRUE: 'true';
@@ -331,7 +331,7 @@ LAST_ASSIGNED: '$';
 // 
 //
 INTEGER: [0-9]+;
-DOUBLE: [0-9]* '.' [0-9]+;
+DECIMAL: [0-9]* '.' [0-9]+;
 VAR: [a-zA-Z_][a-zA-Z0-9_]*;
 STRING: '"' ( ~["])* '"';
 
