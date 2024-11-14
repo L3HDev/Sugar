@@ -1,16 +1,18 @@
-# Sugar Language
+# Sugar Documentation
 
 ## Grammar Definitions
+
+~$code(antlr){antlr/Sugar.g4}
 
 TODO: integrate following
 `destructuring_assignment` = **`LBRACKET`** (**`VAR`** **`COMMA`**)\* **`VAR`** **`RBRACKET`** **`EQUAL`** `expression`
 `lambda` = **`LPAREN`** `parameter_list` **`RPAREN`** **`ARROW`** `block`
 
-TODO: #8 Automate display of grammar
-
 ## Code Examples
 
-TODO: #9 Automate display of code examples from programs folder
+### Classes
+
+~$code(sugar){programs/test_programs/classes.sgr}
 
 ### Lists
 
@@ -159,3 +161,7 @@ result = switch (x) {
     default -> "Other";
 };
 ```
+
+## Misc
+
+~$md{docs/contents/misc/InstallBoost.md}
