@@ -31,9 +31,13 @@ var_declaration: (variable_type | list_declaration) VAR;
 list_declaration:
 	variable_type ((LISTDECL)+ | (LISTDECL INTEGER)+);
 
+class_inheritance_list:
+    LPAREN user_defined_type (COMMA user_defined_type)* RPAREN;
+
 class_declaration:
-	CLASS user_defined_type LCURL (
+	CLASS user_defined_type (class_inheritance_list)? LCURL (
 		PUBLIC class_member_segment
+		| PROTECTED class_member_segment
 		| PRIVATE class_member_segment
 	)* RCURL;
 
@@ -180,7 +184,7 @@ class_member_segment:
 		class_constructor
 		| class_operator_override
 		| function_declaration
-        | var_declaration SEMICOLON
+		| var_declaration SEMICOLON
 		| assignment SEMICOLON
 	)* RCURL;
 
@@ -239,9 +243,13 @@ or_logic_operator: AND | WORD_AND;
 // Terminals
 // 
 //
+// 
+//
 
 //
 // Operands in precedence order
+// 
+//
 // 
 //
 INCREMENT: '++';
@@ -293,6 +301,10 @@ PIPE: '|>';
 //
 // 
 //
+// 
+//
+// 
+//
 
 SEMICOLON: ';';
 LPAREN: '(';
@@ -312,6 +324,7 @@ FOR: 'for';
 COMMA: ',';
 CLASS: 'class';
 PUBLIC: 'public';
+PROTECTED: 'protected';
 PRIVATE: 'private';
 INTTYPE: 'int';
 DECIMALTYPE: 'dec';
@@ -330,6 +343,8 @@ LAST_ASSIGNED: '$';
 // Regex types
 // 
 //
+// 
+//
 INTEGER: [0-9]+;
 DECIMAL: [0-9]* '.' [0-9]+;
 VAR: [a-zA-Z_][a-zA-Z0-9_]*;
@@ -337,6 +352,8 @@ STRING: '"' ( ~["])* '"';
 
 //
 // Whitespace and comments
+// 
+//
 // 
 //
 WS: [ \t\r\n\u000C]+ -> skip;

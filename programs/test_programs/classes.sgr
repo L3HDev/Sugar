@@ -30,6 +30,10 @@ class MyClass {
   private {
     int value = 0;
   }
+
+  protected {
+    int protected_value = 10;
+  }
 }
 
 MyClass myObject();
