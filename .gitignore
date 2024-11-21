@@ -6,7 +6,7 @@
 # Built Visual Studio Code Extensions
 *.vsix
 
-build/*
+build*/*
 
 antlr/build/*
 antlr/.antlr

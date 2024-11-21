@@ -162,6 +162,10 @@ result = switch (x) {
 };
 ```
 
-## Misc
+## Windows Guides
 
-~$md{docs/contents/misc/InstallBoost.md}
+Because developing under windows can be a pain in the ass at times, this section includes a few brief guides on installing and setting up everything that might cause trouble i.e. everything that is not just a simple setup.exe.
+
+~$md{docs/contents/windows_shit/InstallBoost.md}
+
+~$md{docs/contents/windows_shit/InstallLLVM.md}

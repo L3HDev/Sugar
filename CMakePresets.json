@@ -1,0 +1,37 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "win-clang-debug",
+            "displayName": "Windows Clang Debug",
+            "description": "Configure Debug build",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build-win-clang-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "LLVM_DEBUG_BUILD_PATH": "C:\\Program Files\\LLVMDebug",
+                "CMAKE_C_COMPILER": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\Llvm\\x64\\bin\\clang.exe",
+                "CMAKE_CXX_COMPILER": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\Llvm\\x64\\bin\\clang.exe"
+            }
+        },
+        {
+            "name": "win-clang-release",
+            "displayName": "Windows Clang Release",
+            "description": "Configure Release build",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build-win-clang-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "LLVM_RELEASE_BUILD_PATH": "C:\\Program Files\\LLVM",
+                "CMAKE_C_COMPILER": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\Llvm\\x64\\bin\\clang.exe",
+                "CMAKE_CXX_COMPILER": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\Llvm\\x64\\bin\\clang.exe"
+            }
+        }
+        
+    ]
+}
