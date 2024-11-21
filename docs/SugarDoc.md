@@ -574,7 +574,9 @@ result = switch (x) {
 };
 ```
 
-## Misc
+## Windows Guides
+
+Because developing under windows can be a pain in the ass at times, this section includes a few brief guides on installing and setting up everything that might cause trouble i.e. everything that is not just a simple setup.exe.
 
 ### Using Boost 1.82 with GCC on Windows
 
@@ -643,3 +645,40 @@ set PATH=%PATH%;C:\Program Files\Boost\boost_1_82_0\lib
 ```
 
 This completes the installation of Boost 1.82 with GCC on Windows 11. You can now link these libraries in your C++ projects.
+
+### Installing LLVM on Windows
+
+Because all the pre-built releases provided by the llvm-project are so minimal that they are basically useless, llvm needs to build build from source and then installed. There is a [repo](https://github.com/vovkos/llvm-package-windows?tab=readme-ov-file) that provides pre-built binaries that at least contain all necessary cli tools but doing a build with them is still not possible.
+
+#### Cloning LLVM
+
+The llvm-project ist enormous, to safe checkout time and because it's all we need we do a shallow clone.
+
+```bash
+git clone --config core.autocrlf=false --depth 1 https://github.com/llvm/llvm-project.git
+```
+
+#### Building With CMake
+
+This part and the installation are basically straight from the llvm [documentation](https://llvm.org/docs/CMake.html), but for completeness and because this is exactly what we need it's still written here.
+
+```bash
+cd path\to\llvm-project
+mkdir build && cd build
+
+cmake -DVARIABLE:TYPE=release path\to\llvm-project\llvm
+cmake --build .
+```
+
+#### Installing LLVM
+
+```bash
+mkdir C:\Program Files\LLVM
+cmake -DCMAKE_INSTALL_PREFIX=C:\Program Files\LLVM -P cmake_install.cmake
+```
+
+Now add the bin folder to the PATH.
+
+```bash
+setx PATH="%PATH%;C:\Program Files\LLVM\bin"
+```
