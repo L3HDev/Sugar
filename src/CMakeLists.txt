@@ -1,1 +1,3 @@
-add_subdirectory(salt-llvm-compiler)
+add_subdirectory(util/output-manager)
+
+add_subdirectory(caramel-compiler)

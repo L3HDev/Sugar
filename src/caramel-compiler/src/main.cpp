@@ -13,6 +13,10 @@
 #include "antlr4-runtime.h"
 #include <fstream>
 
+#include "output-manager/cli-output-manager.h"
+
+#include "SugarVistorImpl.h"
+
 char *getCmdOption(char **begin, char **end, const std::string &option)
 {
     char **itr = std::find(begin, end, option);
@@ -31,14 +35,17 @@ bool cmdOptionExists(char **begin, char **end, const std::string &option)
 int test_antlr_usage()
 {
     std::ifstream stream;
-    stream.open("input.scene");
+    stream.open("programs/test_programs/classes.sgr");
     
     antlr4::ANTLRInputStream input(stream);
     SugarLexer lexer(&input);
     antlr4::CommonTokenStream tokens(&lexer);
-    SugarParser parser(&tokens);    
-    
-    // SugarParser::FileContext* tree = parser.file();
+    SugarParser parser(&tokens);
+
+    SugarParser::ProgramContext* tree = parser.program();
+
+    SugarVisitorImpl visitor;
+    auto prog = visitor.visit(tree);
 
     return 0;
 }

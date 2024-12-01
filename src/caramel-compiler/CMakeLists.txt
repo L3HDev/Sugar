@@ -1,4 +1,4 @@
-set(SALT_LLVM_COMPILER Salt-Compiler)
+set(CARAMEL_LLVM_COMPILER Caramel-Compiler)
 
 # Antlr ---------------------------------------------------------
 add_definitions(-DANTLR4CPP_STATIC)
@@ -21,7 +21,7 @@ include_directories(${ANTLR_Sugar_OUTPUT_DIR})
 # LLVM ----------------------------------------------------------
 message("Searching for LLVM.")
 
-find_package(LLVM REQUIRED CONFIG) # HINTS /home/student/Documents/LLVM-19.1.3)
+find_package(LLVM REQUIRED CONFIG)
     
 message("Found LLVM ${LLVM_PACKAGE_VERSION}")
 message("Using LLVMConfig.cmake in: ${LLVM_DIR}")
@@ -34,12 +34,13 @@ llvm_map_components_to_libnames(llvm_libs core support)
 message("Adding LLVM-Libs: ${llvm_libs}")
 # LLVM ----------------------------------------------------------
 
-file(GLOB_RECURSE salt_src
+file(GLOB_RECURSE caramel_src
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 )
 
-add_executable(${SALT_LLVM_COMPILER} ${salt_src} ${ANTLR_Sugar_CXX_OUTPUTS})
+add_executable(${CARAMEL_LLVM_COMPILER} ${caramel_src} ${ANTLR_Sugar_CXX_OUTPUTS})
 
-target_link_libraries(${SALT_LLVM_COMPILER} antlr4_static ${llvm_libs})
+target_link_libraries(${CARAMEL_LLVM_COMPILER} PRIVATE antlr4_static ${llvm_libs} output-manager)
 
+# target_link_directories(${CARAMEL_LLVM_COMPILER} PUBLIC output-manager)
