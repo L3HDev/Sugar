@@ -42,10 +42,10 @@ int test_antlr_usage()
     antlr4::CommonTokenStream tokens(&lexer);
     SugarParser parser(&tokens);
 
-    SugarParser::ProgramContext* tree = parser.program();
+    auto tree = parser.program();
 
     SugarVisitorImpl visitor;
-    auto prog = visitor.visit(tree);
+    visitor.visitChildren(tree);
 
     return 0;
 }
@@ -101,5 +101,5 @@ int main(int argc, char *argv[])
     //     std::cout << "File: " << filename << std::endl;
     // }
 
-    return test_antlr_usage() + test_llvm_usage();
+    return test_antlr_usage(); // + test_llvm_usage();
 }

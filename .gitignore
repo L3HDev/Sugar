@@ -16,3 +16,6 @@ __pycache__/
 .venv
 
 .pytest_cache
+
+/src/caramel-compiler/antlr/.antlr/
+checks.json
