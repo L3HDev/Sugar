@@ -16,6 +16,7 @@
 #include "output-manager/cli-output-manager.h"
 
 #include "SugarVistorImpl.h"
+#include "RisVisitor.h"
 
 char *getCmdOption(char **begin, char **end, const std::string &option)
 {
@@ -36,14 +37,13 @@ int test_antlr_usage()
 {
     std::ifstream stream;
     stream.open("programs/test_programs/classes.sgr");
-    
+
     antlr4::ANTLRInputStream input(stream);
     SugarLexer lexer(&input);
     antlr4::CommonTokenStream tokens(&lexer);
     SugarParser parser(&tokens);
 
     auto tree = parser.program();
-
     SugarVisitorImpl visitor;
     visitor.visitChildren(tree);
 
