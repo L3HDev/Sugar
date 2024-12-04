@@ -1,4 +1,4 @@
-.vscode/*
+.vscode
 
 # Local History for Visual Studio Code
 .history/
@@ -7,3 +7,15 @@
 *.vsix
 
 build/*
+
+antlr/build/*
+antlr/.antlr
+
+__pycache__/
+
+.venv
+
+.pytest_cache
+
+/src/caramel-compiler/antlr/.antlr/
+checks.json

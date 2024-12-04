@@ -1,0 +1,5 @@
+int32b a = 5;
+int32b b = a * 3 + 2;
+b = b - 2 * 4;
+
+print(b);
