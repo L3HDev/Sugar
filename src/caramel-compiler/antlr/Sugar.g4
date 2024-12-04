@@ -1,6 +1,6 @@
 grammar Sugar;
 
-program: (class_declaration | function_declaration | statement)*;
+program: (class_declaration | function_declaration | statement)+;
 
 statement: (
 		(
@@ -32,7 +32,7 @@ list_declaration:
 	variable_type ((LISTDECL)+ | (LISTDECL INTEGER)+);
 
 class_inheritance_list:
-    LPAREN user_defined_type (COMMA user_defined_type)* RPAREN;
+	LPAREN user_defined_type (COMMA user_defined_type)* RPAREN;
 
 class_declaration:
 	CLASS user_defined_type (class_inheritance_list)? LCURL (
@@ -239,8 +239,36 @@ and_logic_operator: OR | WORD_OR;
 
 or_logic_operator: AND | WORD_AND;
 
+INTTYPE:
+	INTBASETYPE (
+		SIZE_64_IDENTIFIER
+		| SIZE_32_IDENTIFIER
+		| SIZE_16_IDENTIFIER
+		| SIZE_8_IDENTIFIER
+	);
+
+DECIMALTYPE:
+	DECIMALBASETYPE (
+		SIZE_64_IDENTIFIER
+		| SIZE_32_IDENTIFIER
+		| SIZE_16_IDENTIFIER
+		| SIZE_8_IDENTIFIER
+	);
+
 //
 // Terminals
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
 // 
 //
 // 
@@ -248,6 +276,18 @@ or_logic_operator: AND | WORD_AND;
 
 //
 // Operands in precedence order
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
 // 
 //
 // 
@@ -305,6 +345,33 @@ PIPE: '|>';
 //
 // 
 //
+// 
+//
+// 
+//
+
+SIZE_64_IDENTIFIER: '64b';
+SIZE_32_IDENTIFIER: '32b';
+SIZE_16_IDENTIFIER: '16b';
+SIZE_8_IDENTIFIER: '8b';
+
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
 
 SEMICOLON: ';';
 LPAREN: '(';
@@ -326,8 +393,8 @@ CLASS: 'class';
 PUBLIC: 'public';
 PROTECTED: 'protected';
 PRIVATE: 'private';
-INTTYPE: 'int';
-DECIMALTYPE: 'dec';
+INTBASETYPE: 'int';
+DECIMALBASETYPE: 'dec';
 STRINGTYPE: 'string';
 BOOLTYPE: 'bool';
 BOOL_TRUE: 'true';
@@ -345,6 +412,18 @@ LAST_ASSIGNED: '$';
 //
 // 
 //
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
 INTEGER: [0-9]+;
 DECIMAL: [0-9]* '.' [0-9]+;
 VAR: [a-zA-Z_][a-zA-Z0-9_]*;
@@ -352,6 +431,18 @@ STRING: '"' ( ~["])* '"';
 
 //
 // Whitespace and comments
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
+// 
+//
 // 
 //
 // 

@@ -5,7 +5,7 @@ class MyClass {
     () {
       value = 1;
     }
-    (int val) {
+    (int32b val) {
       value = val;
     }
 
@@ -17,22 +17,22 @@ class MyClass {
       value = right_hand.getValue() + value;
     }
 
-    int setValue(int val) {
+    int32b setValue(int32b val) {
         value = val;
         return value;
     }
 
-    int getValue() {
+    int32b getValue() {
         return value;
     }
   }
 
   private {
-    int value = 0;
+    int32b value = 0;
   }
 
   protected {
-    int protected_value = 10;
+    int32b protected_value = 10;
   }
 }
 

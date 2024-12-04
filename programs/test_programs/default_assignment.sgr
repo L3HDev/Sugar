@@ -1,5 +1,5 @@
-int null_value;
-int non_null_value = 1;
+int32b null_value;
+int32b non_null_value = 1;
 
 null_value ?= 100;      // will be set to 100
 non_null_value ?= 100;  // will stay at 1

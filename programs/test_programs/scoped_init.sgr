@@ -1,4 +1,4 @@
-if(int temp = get_some_value(), $ -> [> 6]) {
+if(int32b temp = get_some_value(), $ -> [> 6]) {
     // temp is usable here
     print(temp);
 }
@@ -15,9 +15,9 @@ else {
     print(temp);
 }
 
-if(int temp = get_some_value(), $ > 6) {}
+if(int32b temp = get_some_value(), $ > 6) {}
 
-if(int temp = get_some_value(), int temp2 = get_some_value(), temp > 6 || $ < 4) {}
+if(int32b temp = get_some_value(), int32b temp2 = get_some_value(), temp > 6 || $ < 4) {}
 
 if(temp = get_some_value(), $ > 6) {}
 

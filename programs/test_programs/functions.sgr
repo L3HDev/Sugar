@@ -1,4 +1,4 @@
-int add(int a, int b = 5) {
+int32b add(int32b a, int32b b = 5) {
     return a + b;
 }
 

@@ -1,4 +1,4 @@
-int value = 3;
+int32b value = 3;
 
 string result = switch(value) {
     case 1 {} =>                // Fallthrough without behavior
